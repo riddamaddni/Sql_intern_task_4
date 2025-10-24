@@ -1,0 +1,44 @@
+1. What is GROUP BY?
+
+The **`GROUP BY`** clause is a SQL command used to arrange identical data into groups. It's almost always used in conjunction with aggregate functions (like `COUNT`, `SUM`, `AVG`, etc.) to perform a calculation on each unique group of rows rather than on the entire table.
+
+2. Difference between WHERE and HAVING?
+
+Both clauses filter data, but they operate at different stages of a query:
+The **`WHERE`** clause filters individual rows *before* any grouping or aggregation occurs.
+The **`HAVING`** clause filters entire groups *after* the `GROUP BY` clause has been applied and aggregate functions have been calculated.
+
+3. How does COUNT(*) differ from COUNT(column)?
+
+**`COUNT(*)`** counts the total number of rows in the table or group, including rows that contain `NULL` values.
+**`COUNT(column)`** counts the number of rows where the specified *column* contains a non-`NULL` value. It specifically ignores `NULL`s in that column.
+
+4. Can you group by multiple columns?
+
+Yes. When you list multiple columns in the `GROUP BY` clause, the database creates unique groups based on the *combination* of values from all the specified columns. A new group is formed for every unique combination.
+
+5. What is ROUND() used for?
+
+The **`ROUND()`** function is a numeric function used to round a number to a specified number of decimal places.
+
+6. How do you find the highest salary by department?
+
+To find the highest salary *per department*, you must use the **`MAX()`** aggregate function on the salary column. You then use the **`GROUP BY`** clause on the department column to divide the data into groups (one for each department) so `MAX()` can find the highest value within each specific group.
+
+7. What is the default behavior of GROUP BY?
+
+The only guaranteed behavior of `GROUP BY` is to create distinct groups based on the specified columns. While some older database systems used to implicitly sort the results by the grouping columns, this is **not** standard SQL behavior and should never be relied upon. If you need a specific sort order, you must explicitly use an **`ORDER BY`** clause.
+
+8. Explain AVG and SUM.
+
+Both are common aggregate functions used on numeric data:
+**`AVG()`** 📊 calculates the **average** (the arithmetic mean) of all non-`NULL` values in a group.
+**`SUM()`** calculates the **total sum** of all non-`NULL` values in a group.
+
+9. How to count distinct values?
+
+You use the **`DISTINCT`** keyword *inside* the **`COUNT()`** aggregate function. This combination counts the number of *unique*, non-`NULL` values within the specified column for a group.
+
+10. What is an aggregate function?
+
+An **aggregate function** is a function that performs a calculation on a *set of rows* (a group) and returns a **single summary value** for that entire set. Common examples include `COUNT`, `SUM`, `AVG`, `MAX`, and `MIN`.
